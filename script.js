@@ -108,7 +108,7 @@ async function chartIt(token){
     }
     };
 
-    const myDiv = document.getElementById('myDiv'); 
+    const myDiv = document.getElementsByClassName('myDiv')[0]; 
     Plotly.newPlot(myDiv, [trace1, trace2], layout);
 }
 
@@ -227,8 +227,8 @@ function diffMonthsPlot(){
                 },
             barmode: 'group', title: 'Rate of Return', yaxis: {side:"right"}};
 
-
-    Plotly.newPlot('diffDiv', data, layout);
+    var diffDiv = document.getElementsByClassName('diffDiv')[0];
+    Plotly.newPlot(diffDiv, data, layout);
 }
 
 function monthReturns(redCurrentDateVal, redMonthDateVal){
@@ -415,9 +415,17 @@ async function fetchIndexComponentDate(newToken){
     tableVar += '</tbody>';
     tableVar += '</table>';
         
-    document.getElementById("tableDisplay").innerHTML = tableVar;
+    document.getElementsByClassName("tableDisplay")[0].innerHTML = tableVar;
 
 }
+
+document.getElementsByClassName('buttonWrapper')[0].innerHTML = `
+<div  style="text-align: center; border: 1px; border-color: antiquewhite; background-color: antiquewhite;">
+        <label for="investment">If you had invested:</label>
+        <input id="amtUser" type="number" placeholder="Enter a number"/>
+        <button id="btnSubmit">Submit</button>
+      </div>
+`;
 
 document.getElementById("btnSubmit").addEventListener("click", function(){ 
     
